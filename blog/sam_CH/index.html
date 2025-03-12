@@ -20,7 +20,7 @@
     
     
       
-        <title>后缀自动机 SAM - XP_L's Blog</title>
+        <title>后缀自动机/SAM - XP_L's Blog</title>
       
     
     
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              后缀自动机 SAM
+              后缀自动机/SAM
             
           </span>
         </div>
@@ -484,28 +484,40 @@
 
 
 <h1 id="_1">后缀自动机<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p><strong>后缀自动机（<span class="arithmatex">\(\text{SAM, Suffix Automaton}\)</span>）</strong> 是接受字符串所有后缀的最小 <span class="arithmatex">\(\operatorname{DFA}\)</span></p>
-<p>记 <span class="arithmatex">\(\operatorname{SAM}(S,\Sigma,\delta,P_{0},S)\)</span></p>
+<p><strong>后缀自动机（<span class="arithmatex">\(\text{SAM, Suffix Automaton}\)</span>）</strong> 是接受字符串所有后缀的最小 <span class="arithmatex">\(\operatorname{DFA}\)</span>。</p>
+<p>记 <span class="arithmatex">\(\operatorname{SAM}(S,\Sigma,\delta,P_{0},S)\)</span>。</p>
 <h2 id="1-endpos">1. endpos 及其等价类<a class="headerlink" href="#1-endpos" title="Permanent link">&para;</a></h2>
-<p>在下文中，<span class="arithmatex">\(\operatorname{sub}(s)\)</span> 表示 <span class="arithmatex">\(s\)</span> 的所有子串构成的集合（包括空串），<span class="arithmatex">\(\operatorname{suf}(s)\)</span> 表示 <span class="arithmatex">\(s\)</span> 的所有后缀构成的集合（包括空串）</p>
-<p>对于给定的文本串 <span class="arithmatex">\(s\)</span>，及其子串 <span class="arithmatex">\(s'\)</span>，<span class="arithmatex">\(s'\)</span> 在 <span class="arithmatex">\(s\)</span> 中的所有出现位置的最后一个字符的下标所构成的集合即 <span class="arithmatex">\(s'\)</span> 的 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类为 <span class="arithmatex">\(\operatorname{endpos}_{s}(s')\)</span></p>
-<p>以 <span class="arithmatex">\(s=abcbc\)</span> 为例，观察 <span class="arithmatex">\(s\)</span> 的子串 <span class="arithmatex">\(、texttt{bc}\)</span> 出现位置 <span class="arithmatex">\(\{[2,3],[4,5]\}\)</span>，有其 <span class="arithmatex">\(\operatorname{endpos}\)</span> 为 <span class="arithmatex">\(\{3,5\}\)</span>。继续观察，注意到子串 <span class="arithmatex">\(\texttt{c}\)</span> 的 <span class="arithmatex">\(\operatorname{endpos}\)</span> 同样为 <span class="arithmatex">\(\{3,5\}\)</span>，那么有对于文本串 <span class="arithmatex">\(\texttt{s}\)</span>，子串 <span class="arithmatex">\(\texttt{c},\texttt{bc}\)</span> 处于同一个 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类，进一步的，有 <span class="arithmatex">\(\{\texttt{c},\texttt{bc}\}\)</span> 构成了一个极大 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类。</p>
+<p>在下文中，<span class="arithmatex">\(\operatorname{sub}(s)\)</span> 表示 <span class="arithmatex">\(s\)</span> 的所有子串构成的集合（包括空串），<span class="arithmatex">\(\operatorname{suf}(s)\)</span> 表示 <span class="arithmatex">\(s\)</span> 的所有后缀构成的集合（包括空串）。</p>
+<p>对于给定的文本串 <span class="arithmatex">\(s\)</span>，及其子串 <span class="arithmatex">\(s'\)</span>，<span class="arithmatex">\(s'\)</span> 在 <span class="arithmatex">\(s\)</span> 中的所有出现位置的最后一个字符的下标所构成的集合即 <span class="arithmatex">\(s'\)</span> 的 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类为 <span class="arithmatex">\(\operatorname{endpos}_{s}(s')\)</span>。</p>
+<p>以 <span class="arithmatex">\(s=abcbc\)</span> 为例，观察 <span class="arithmatex">\(s\)</span> 的子串 <span class="arithmatex">\(\texttt{bc}\)</span> 出现位置 <span class="arithmatex">\(\{[2,3],[4,5]\}\)</span>，有其 <span class="arithmatex">\(\operatorname{endpos}\)</span> 为 <span class="arithmatex">\(\{3,5\}\)</span>。继续观察，注意到子串 <span class="arithmatex">\(\texttt{c}\)</span> 的 <span class="arithmatex">\(\operatorname{endpos}\)</span> 同样为 <span class="arithmatex">\(\{3,5\}\)</span>，那么有对于文本串 <span class="arithmatex">\(\texttt{s}\)</span>，子串 <span class="arithmatex">\(\texttt{c},\texttt{bc}\)</span> 处于同一个 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类，进一步的，有 <span class="arithmatex">\(\{\texttt{c},\texttt{bc}\}\)</span> 构成了一个极大 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类。</p>
 <p>在下文中，规定 <span class="arithmatex">\([s']\)</span> 表示以 <span class="arithmatex">\(s\)</span> 为文本串，<span class="arithmatex">\(s'\)</span> 所处的极大 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类。</p>
-<p>对于 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类 <span class="arithmatex">\([s']\)</span>，有 <span class="arithmatex">\(\operatorname{len}_{[s']} = \forall t \in [s'],\max(|t|)\)</span></p>
-<p>!!! a</p>
-<div class="highlight"><pre><span></span><code>&gt; 引理 1.1
-&gt;
-&gt; $\forall t&#39;\in \operatorname{sub}(s):(\forall t | t&#39; \in \operatorname{suf}(t) : )$
-
-&gt; 引理 1.2
-&gt;
-&gt; $\forall s&#39; \in \operatorname{sub}(s) : (\exist [l,r] : (\forall t \in [s&#39;] : |t| \in [l, r]) \land (\forall x \in [l, r] \cap \Z : \exist t \in [s&#39;] : |t| = x))$
-&gt;
-&gt; 即所有极大 $\operatorname{endpos}$ 等价类的元素的长度连续
-
-&gt; 证明
-&gt; $\forall s_{1} \in [t]:$
-</code></pre></div>
+<p>对于 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类 <span class="arithmatex">\([s']\)</span>，有 <span class="arithmatex">\(\operatorname{len}_{[s']} = \forall t \in [s'],\max(|t|)\)</span>。</p>
+<div class="admonition note">
+<p class="admonition-title">引理 1</p>
+<blockquote>
+<p><span class="arithmatex">\(\forall t'\in \operatorname{sub}(s):(\forall t | t' \in \operatorname{suf}(t) : (\forall s_{1} \in [t'],s_{2} \in [t]:|\operatorname{endpos}_{s}(s_{1})|\leq|\operatorname{endpos}_{s}(s_{2})|))\)</span></p>
+<p>即所有字符串的后缀的 <span class="arithmatex">\(\operatorname{endpos}\)</span> 集合大小大于等于原串的 <span class="arithmatex">\(\operatorname{endpos}\)</span> 集合大小。</p>
+</blockquote>
+</div>
+<details class="note">
+<summary>证明</summary>
+<blockquote>
+<p>这很显然。</p>
+</blockquote>
+</details>
+<div class="admonition note">
+<p class="admonition-title">引理 2</p>
+<blockquote>
+<p><span class="arithmatex">\(\forall s' \in \operatorname{sub}(s) : (\exists [l,r] : (\forall t \in [s'] : |t| \in [l, r]) \land (\forall x \in [l, r] \cap \mathbb{Z} : \exists t \in [s'] : |t| = x))\)</span></p>
+<p>即所有极大 <span class="arithmatex">\(\operatorname{endpos}\)</span> 等价类的元素的长度连续。</p>
+</blockquote>
+</div>
+<details class="note">
+<summary>证明</summary>
+<blockquote>
+<p>根据引理 1，这同样很显然。</p>
+</blockquote>
+</details>
 
 
 
