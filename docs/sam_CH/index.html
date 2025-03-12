@@ -10,7 +10,7 @@
         <meta name="author" content="luanXiPing">
       
       
-        <link rel="canonical" href="https://luanxiping.github.io/XP_L/blog/string/">
+        <link rel="canonical" href="https://luanxiping.github.io/XP_L/docs/sam_CH/">
       
       
       
@@ -20,7 +20,7 @@
     
     
       
-        <title>String - XP_L's Blog</title>
+        <title>用以识别文本串全部子串的最小自动机 - XP_L's Blog</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#string" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              String
+              用以识别文本串全部子串的最小自动机
             
           </span>
         </div>
@@ -230,13 +230,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../blog/string.md" class="md-tabs__link">
           
   
   Blog
@@ -296,28 +294,25 @@
       
   
   
-    
   
   
-  
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -329,7 +324,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Blog
@@ -340,31 +335,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    String
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../blog/string.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -374,35 +348,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#sam" class="md-nav__link">
-    <span class="md-ellipsis">
-      后缀自动机 / SAM
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -442,9 +387,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sam" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      后缀自动机 / SAM
+      引入
     </span>
   </a>
   
@@ -469,14 +414,19 @@
   
 
 
-<h1 id="string">字符串 / string<a class="headerlink" href="#string" title="Permanent link">&para;</a></h1>
-<p>字符串（string）是由字符（char）拼接而成的串。</p>
-<h2 id="sam">后缀自动机 / SAM<a class="headerlink" href="#sam" title="Permanent link">&para;</a></h2>
-<p><strong>后缀自动机</strong>是由字符串的所有后缀组成的自动机，有原点 <span class="arithmatex">\(P_0\)</span>。其有如下性质：
-  - 从 <span class="arithmatex">\(P_0\)</span> 起的所有路径都代表了字符串的一个子串
-  - 每个节点代表一个 <span class="arithmatex">\(endpos\)</span> 等价类 <span class="arithmatex">\(^{[1]}\)</span></p>
-<hr />
-<p><span class="arithmatex">\([1]\)</span>：<span class="arithmatex">\(endpos\)</span> 表示一个字符串在原串的所有出现的位置的最后一位所组成的集合，<span class="arithmatex">\(endpos\)</span> 等价类表示一些（一个）<span class="arithmatex">\(endpos\)</span> 相同的字符串。</p>
+<h1 id="_1">用以识别文本串全部子串的最小自动机<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><strong>A. BLUMER, J. BLUMER and D. HAUSSLER</strong></p>
+<p><em>数学与计算机科学学院，丹佛大学，丹佛，美利坚合众国</em></p>
+<p><strong>A. EHRENFEUCHT</strong></p>
+<p><em>计算机科学学院，科罗拉多大学博尔德分校，博尔德，丹佛，美利坚合众国</em></p>
+<p><strong>M.T. CHEN</strong></p>
+<p><em>计算机科学学院，南京大学，南京，江苏，中华人民共和国</em></p>
+<p><strong>J. SEIFERAS</strong></p>
+<p><em>计算机科学学院, 罗切斯特大学，罗切斯特，纽约，美利坚合众国</em></p>
+<h2 id="_2">引入<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>In the classic string mathcing problem for text, we are given a text <span class="arithmatex">\(w\)</span> and a pattern string <span class="arithmatex">\(x\)</span> and we want to know if <span class="arithmatex">\(x\)</span> apperas in <span class="arithmatex">\(w\)</span>, i.e., if <span class="arithmatex">\(x\)</span> is a subword if <span class="arithmatex">\(w\)</span>. Standard approaches to this problem invovle various methods for preprocessung <span class="arithmatex">\(x\)</span> so that the text <span class="arithmatex">\(w\)</span> can be searched rapidly [<span class="arithmatex">\(1, 9, 16\)</span>]. Since each search still takes time proportional to the length of <span class="arithmatex">\(w\)</span>, this method is inappropriate when many different patterns database. In this case, it is desireable to preprocess the text itself, biulding an auxiliary data structure that allows one to determine whether <span class="arithmatex">\(x\)</span> is a subword of <span class="arithmatex">\(w\)</span> in time proportional to the length of <span class="arithmatex">\(x\)</span>, not <span class="arithmatex">\(w\)</span>. Data structures with this property (known as 'suffix trees' or 'compact position trees', earlier as 'Patricia trees') have been developed [<span class="arithmatex">\(17, 19, 21, 23, 24, 25, 26, 28\)</span>] and used in a wide variety of pattern mathcing applications, in addtion to the classci string mathcing problem given above (e.g., [<span class="arithmatex">\(2, 3, 4, 5, 22, 27\)</span>]).</p>
+<p>在经典的对文本串进行字符串匹配的问题中，有给定的文本串 <span class="arithmatex">\(w\)</span> 和模式串 <span class="arithmatex">\(x\)</span>，而我们想知道 <span class="arithmatex">\(x\)</span> 是否出现于 <span class="arithmatex">\(w\)</span> 中，换言之，<span class="arithmatex">\(x\)</span> 是否是 <span class="arithmatex">\(w\)</span> 的子串。常规的做法有着不同的针对 <span class="arithmatex">\(x\)</span> 预处理使得 <span class="arithmatex">\(w\)</span> 可以被快速的搜索（查询）[<span class="arithmatex">\(1, 9, 16\)</span>]。因为每次搜索（查询）的运行时间依然与 <span class="arithmatex">\(||w||\)</span> 成正比，这种方法</p>
+<p>Clearly, a deterministic finite automaton (DFA) that recongnizes the set of all subwords of <span class="arithmatex">\(w\)</span> would serve as an auxiliary index for <span class="arithmatex">\(w\)</span> in the above sense. We can also allow this automaton to be partial, i.e., such that each state need not have a transition on every letter. We domonstrate the feasibility of this aproach by exhibiting a partial DFA that recongnizes the set of </p>
 
 
 
